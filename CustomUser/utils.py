@@ -22,8 +22,10 @@
 # utils.py
 import requests
 from decouple import config 
+from django.conf import settings
 
-DEBOUNCE_API_KEY = config('DEBOUNCE_API_KEY') #'66f02e8eeb216'
+# DEBOUNCE_API_KEY = config('DEBOUNCE_API_KEY')
+DEBOUNCE_API_KEY = settings.DEBOUNCE_API_KEY
 
 def check_email_validity(email):
     debounce_url = 'https://api.debounce.io/v1/'

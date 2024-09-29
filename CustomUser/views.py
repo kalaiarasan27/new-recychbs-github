@@ -18,6 +18,11 @@ import random
 from twilio.rest import Client
 from decouple import config
 from django.conf import settings
+from dotenv import load_dotenv
+
+# Load the .env file
+load_dotenv()
+
 
 
 class IndexView(TemplateView):
@@ -371,8 +376,12 @@ def resend_otp_view(request):
  
             # account_sid = config('TWILIO_ACOOUNT_SID')
             # auth_token =  config('TWILIO_ACOOUNT_AUTH_TOKEN')
-            account_sid = settings.TWILIO_ACCOUNT_SID
-            auth_token = settings.TWILIO_ACCOUNT_AUTH_TOKEN
+            
+            # Now you can access the variables in the .env file
+            account_sid = os.getenv('TWILIO_ACCOUNT_SID')
+            auth_token = os.getenv('TWILIO_ACCOUNT_AUTH_TOKEN')
+            # account_sid = settings.TWILIO_ACCOUNT_SID
+            # auth_token = settings.TWILIO_ACCOUNT_AUTH_TOKEN
 
             print("Twilio ID is -",account_sid)
             print("Twilio Token is -",auth_token)
@@ -627,8 +636,11 @@ def register_view(request):
             print(f"Generated OTP: {otp}")  # This is just for testing, remove it in production
             request.session['otp'] = otp
  
-            account_sid = settings.TWILIO_ACCOUNT_SID
-            auth_token = settings.TWILIO_ACCOUNT_AUTH_TOKEN
+            # account_sid = settings.TWILIO_ACCOUNT_SID
+            # auth_token = settings.TWILIO_ACCOUNT_AUTH_TOKEN
+
+            account_sid = os.getenv('TWILIO_ACCOUNT_SID')
+            auth_token = os.getenv('TWILIO_ACCOUNT_AUTH_TOKEN')
 
             
             print(" From Otp Twilio ID is -",account_sid)

@@ -23,9 +23,16 @@
 import requests
 from decouple import config 
 from django.conf import settings
+import os
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 # DEBOUNCE_API_KEY = config('DEBOUNCE_API_KEY')
-DEBOUNCE_API_KEY = settings.DEBOUNCE_API_KEY
+# DEBOUNCE_API_KEY = settings.DEBOUNCE_API_KEY
+DEBOUNCE_API_KEY = os.getenv('DEBOUNCE_API_KEY')
+            # auth_token = os.getenv('TWILIO_ACCOUNT_AUTH_TOKEN')
 
 def check_email_validity(email):
     debounce_url = 'https://api.debounce.io/v1/'

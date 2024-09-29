@@ -16,6 +16,7 @@ from django.contrib.auth import views as auth_views
 import requests
 import random
 from twilio.rest import Client
+from decouple import config
 
 
 class IndexView(TemplateView):
@@ -367,8 +368,8 @@ def resend_otp_view(request):
 
             # Generate a random 6-digit OTP
  
-            account_sid = 'AC4bd461d7feabbbb3a965be18679e34a7'
-            auth_token = 'c8537633c6835bf02231a7e68ee21376'
+            account_sid = config('TWILIO_ACOOUNT_SID')
+            auth_token =  config('TWILIO_ACOOUNT_AUTH_TOKEN')
             client = Client(account_sid, auth_token)
             message = client.messages.create(
             from_='+1 913 270 1336',  # Note the underscore after from
@@ -620,8 +621,8 @@ def register_view(request):
             print(f"Generated OTP: {otp}")  # This is just for testing, remove it in production
             request.session['otp'] = otp
  
-            account_sid = 'AC4bd461d7feabbbb3a965be18679e34a7'
-            auth_token = 'c8537633c6835bf02231a7e68ee21376'
+            account_sid = config('TWILIO_ACOOUNT_SID')
+            auth_token =  config('TWILIO_ACOOUNT_AUTH_TOKEN')
             client = Client(account_sid, auth_token)
             message = client.messages.create(
             from_='+1 913 270 1336',  # Note the underscore after from

@@ -373,6 +373,9 @@ def resend_otp_view(request):
             # auth_token =  config('TWILIO_ACOOUNT_AUTH_TOKEN')
             account_sid = settings.TWILIO_ACCOUNT_SID
             auth_token = settings.TWILIO_ACCOUNT_AUTH_TOKEN
+
+            print("Twilio ID is -",account_sid)
+            print("Twilio Token is -",auth_token)
             client = Client(account_sid, auth_token)
             message = client.messages.create(
             from_='+1 913 270 1336',  # Note the underscore after from
@@ -626,6 +629,10 @@ def register_view(request):
  
             account_sid = settings.TWILIO_ACCOUNT_SID
             auth_token = settings.TWILIO_ACCOUNT_AUTH_TOKEN
+
+            
+            print(" From Otp Twilio ID is -",account_sid)
+            print("From Otp Twilio Token is -",auth_token)
             client = Client(account_sid, auth_token)
             message = client.messages.create(
             from_='+1 913 270 1336',  # Note the underscore after from
